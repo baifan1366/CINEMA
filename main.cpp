@@ -2,6 +2,7 @@
 #include <iostream>
 
 #include "Home.h"
+#include "Utils.h"
 
 using namespace std;
 
@@ -10,12 +11,12 @@ int showMainMenu() {
 
     showDashLoop();
     cout << endl;
-    cout << "\t Welcome to XYZ Cinema System";
+    cout << "\tWELCOME TO XYZ CINEMA SYSTEM";
     cout << endl;
     showDashLoop();
-    cout << endl;
-    cout << "Please Choose Your Role" << endl;
-    cout << "[Press 0 for admin; Press any key for Customer]: ";
+    cout << endl<<endl;
+    cout << "\t[0]\tAdministrator"<<endl<<"\t[1+]\tCustomer"<<endl<<endl;
+    cout << "Please choose your role to get started: ";
 
     // Read the input as a string
     string input;

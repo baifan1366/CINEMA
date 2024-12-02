@@ -2,8 +2,9 @@
 #include "MovieManagement.h"
 #include "Movie.h"
 #include "Home.h"
+#include "Utils.h"
 
-void displayMovie()
+void displayMoviePage()
 {
 	int opt;
 	string filename = "movies.txt";
