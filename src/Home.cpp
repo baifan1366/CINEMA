@@ -32,17 +32,17 @@ void showCustomerMenu()
     // Switch block to handle the user's choice
     switch (choice) {
         case 1:
-            showLoadingAnimation("Fetching movie list", 2);
+            showLoadingAnimation("Fetching movie list", "Successful", 2);
             system("pause");
             clearScreen();
             break;
         case 2:
-            showLoadingAnimation("Booking tickets", 2);
+            showLoadingAnimation("Booking tickets", "Successful", 2);
             system("pause");
             clearScreen();
             break;
         case 3:
-            showLoadingAnimation("Checking booking status", 2);
+            showLoadingAnimation("Checking booking status", "Successful", 2);
             system("pause");
             clearScreen();
             break;
@@ -82,20 +82,20 @@ void showAdminMenu()
     switch (choice) 
 	{
         case 1:
-            showLoadingAnimation("Fetching movie list",2);
+            showLoadingAnimation("Fetching movie list", "Successful",2);
             system("pause");
             system("cls");
             break;
 
         case 2:
-            showLoadingAnimation("Loading",2);
+            showLoadingAnimation("Loading movie page", "Successful",2);
             system("pause");
             clearScreen();
             displayMoviePage();
             break;
 
         case 3:
-            showLoadingAnimation("Checking booking status",2);
+            showLoadingAnimation("Checking booking status", "Successful",2);
             system("pause");
             system("cls");
             break;

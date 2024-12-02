@@ -28,7 +28,7 @@ void clearScreen()
 
 
 // Function to display a fake loading animation
-void showLoadingAnimation(const string& message, int duration = 3) 
+void showLoadingAnimation(const string& message, const string& status, int duration = 3) 
 {
     cout<<endl << message;
     for (int i = 0; i < duration; i++) 
@@ -37,14 +37,23 @@ void showLoadingAnimation(const string& message, int duration = 3)
         cout.flush(); // Force output to appear immediately
         this_thread::sleep_for(chrono::milliseconds(500)); // 500ms delay
     }
-    cout << " Successful!" << endl << endl;
+    cout<<" "<< status << endl << endl;
 }
 
 //show '-' loop
 void showDashLoop() 
 {
-    for (int i = 0; i < 50; i++) 
+    for (int i = 0; i < 160; i++) 
 	{
         cout << "-";
     }
+}
+
+//truncate strings
+string truncate(const string& str, size_t width) 
+{
+    if (str.length() > width) {
+        return str.substr(0, width - 3) + "...";
+    }
+    return str;
 }

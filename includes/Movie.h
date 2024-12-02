@@ -43,6 +43,7 @@ public:
     static vector<Movie> sortByTitle(const vector<Movie>& movies, bool ascending = true);
     static vector<Movie> sortByDuration(const vector<Movie>& movies, bool ascending = true);
     static vector<Movie> sortByPrice(const vector<Movie>& movies, bool ascending = true);
+    //...
 
     // Modify and delete movie functions
     static bool updateMovieInFile(const string& filename, const string& targetTitle, const Movie& updatedMovie);

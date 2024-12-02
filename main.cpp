@@ -17,7 +17,6 @@ int showMainMenu() {
     cout << endl<<endl;
     cout << "\t[0]\tAdministrator"<<endl<<"\t[1]\tCustomer"<<endl<<endl;
     cout << "Please enter your role to get started: ";
-
     // Read the input as a string
     string input;
     cin >> input;
