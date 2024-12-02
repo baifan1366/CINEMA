@@ -11,11 +11,11 @@ int showMainMenu() {
 
     showDashLoop();
     cout << endl;
-    cout << "\tWELCOME TO XYZ CINEMA SYSTEM";
+    cout << "WELCOME TO XYZ CINEMA SYSTEM";
     cout << endl;
     showDashLoop();
     cout << endl<<endl;
-    cout << "\t[0]\tAdministrator"<<endl<<"\t[1+]\tCustomer"<<endl<<endl;
+    cout << "\t[0]\tAdministrator"<<endl<<"\t[1]\tCustomer"<<endl<<endl;
     cout << "Please choose your role to get started: ";
 
     // Read the input as a string
