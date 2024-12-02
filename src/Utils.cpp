@@ -31,7 +31,7 @@ void clearScreen()
 void showLoadingAnimation(const string& message, int duration = 3) 
 {
     cout<<endl << message;
-    for (int i = 0; i < duration; ++i) 
+    for (int i = 0; i < duration; i++) 
 	{
         cout << ".";
         cout.flush(); // Force output to appear immediately

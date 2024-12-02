@@ -1,8 +1,10 @@
 #include "Movie.h"
+#include <vector>
+#include <iostream>
 
 // Constructor
-Movie::Movie(const string& title, const string& genre, int duration, double price)
-    : title(title), genre(genre), duration(duration), price(price) {}
+Movie::Movie(const string& title, const string& genre, const string& classification, const string& cast, const string& synopsis, const string& subtitles, const string& spokenLanguage, int duration, double price)
+    : title(title), genre(genre), classification(classification), cast(cast), synopsis(synopsis), subtitles(subtitles), spokenLanguage(spokenLanguage), duration(duration), price(price) {}
 
 // Getter for title
 string Movie::getTitle() const {
@@ -12,6 +14,26 @@ string Movie::getTitle() const {
 // Getter for genre
 string Movie::getGenre() const {
     return genre;
+}
+
+string Movie::getClassification() const {
+    return classification;
+}
+
+string Movie::getCast() const {
+    return cast;
+}
+
+string Movie::getSynopsis() const {
+    return synopsis;
+}
+
+string Movie::getSubtitles() const {
+    return subtitles;
+}
+
+string Movie::getSpokenLanguage() const {
+    return spokenLanguage;
 }
 
 // Getter for duration
@@ -34,6 +56,26 @@ void Movie::setGenre(const string& genre) {
     this->genre = genre;
 }
 
+void Movie::setClassification(const string& classification) {
+    this->classification = classification;
+}
+
+void Movie::setCast(const string& cast) {
+    this->cast = cast;
+}
+
+void Movie::setSynopsis(const string& synopsis) {
+    this->synopsis = synopsis;
+}
+
+void Movie::setSubtitles(const string& subtitles) {
+    this->subtitles = subtitles;
+}
+
+void Movie::setSpokenLanguage(const string& spokenLanguage) {
+    this->spokenLanguage = spokenLanguage;
+}
+
 // Setter for duration
 void Movie::setDuration(int duration) {
     this->duration = duration;
@@ -48,10 +90,10 @@ void Movie::setPrice(double price) {
 void Movie::saveToFile(const string& filename) const {
     ofstream outFile(filename, ios::app); // Append mode
     if (outFile.is_open()) {
-        outFile << title << "," << genre << "," << duration << "," << price << endl;
-        outFile.close();
+        outFile << title << "," << genre << "," << classification << "," << cast << "," << synopsis << ","<< subtitles << ","<< spokenLanguage << ","<< duration << "," << price << endl;
+		outFile.close();
     } else {
-        throw runtime_error("Unable to open file for writing.");
+        cout<< "Unable to open file.";
     }
 }
 
@@ -64,7 +106,7 @@ vector<Movie> Movie::loadAllFromFile(const string& filename) {
         string line;
         while (getline(inFile, line)) {
             size_t pos = 0;
-            string title, genre;
+            string title, genre, classification, cast, synopsis, subtitles, spokenLanguage;
             int duration;
             double price;
 
@@ -82,11 +124,11 @@ vector<Movie> Movie::loadAllFromFile(const string& filename) {
 
             price = stod(line);
 
-            movies.emplace_back(title, genre, duration, price);
+            movies.emplace_back(title, genre, classification, cast, synopsis, subtitles, spokenLanguage, duration, price);
         }
         inFile.close();
     } else {
-        throw runtime_error("Unable to open file for reading.");
+        cout<< "Unable to open file.";
     }
 
     return movies;
@@ -113,7 +155,7 @@ bool Movie::updateMovieInFile(const string& filename, const string& targetTitle,
             }
             outFile.close();
         } else {
-            throw runtime_error("Unable to open file for writing.");
+            cout<< "Unable to open file.";
         }
     }
 
@@ -136,10 +178,13 @@ bool Movie::deleteMovieFromFile(const string& filename, const string& targetTitl
             }
             outFile.close();
         } else {
-            throw runtime_error("Unable to open file for writing.");
+            cout<< "Unable to open file.";
         }
         return true;
     }
 
     return false; // Movie not found
 }
+
+
+
