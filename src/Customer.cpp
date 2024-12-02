@@ -192,3 +192,5 @@ vector<string> Customer::generateSalesReport(const string& ticketFile) {
 
     return salesReport;
 }
+
+
