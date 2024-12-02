@@ -2,5 +2,6 @@
 #define MOVIEMANAGEMENT_H
 
 void displayMoviePage();
+void createMovie();
 
 #endif

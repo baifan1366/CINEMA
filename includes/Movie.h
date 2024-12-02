@@ -9,17 +9,27 @@ using namespace std;
 
 class Movie {
 public:
-    Movie(const string& title = "", const string& genre = "", int duration = 0, double price = 0.0);
+    Movie(const string& title = "", const string& genre = "", const string& classification = "", const string& cast = "", const string& synopsis = "", const string& subtitles = "", const string& spokenLanguage = "", int duration = 0, double price = 0.0);
 
     // Getters
     string getTitle() const;
     string getGenre() const;
+    string getClassification() const;
+    string getCast() const;
+    string getSynopsis() const;
+    string getSubtitles() const;
+    string getSpokenLanguage() const;
     int getDuration() const;
     double getPrice() const;
 
     // Setters
     void setTitle(const string& title);
     void setGenre(const string& genre);
+    void setClassification(const string& classification);
+    void setCast(const string& cast);
+    void setSynopsis(const string& synopsis);
+    void setSubtitles(const string& subtitles);
+    void setSpokenLanguage(const string& spokenLanguage);
     void setDuration(int duration);
     void setPrice(double price);
 
@@ -39,8 +49,7 @@ public:
     static bool deleteMovieFromFile(const string& filename, const string& targetTitle);
 
 private:
-    string title;
-    string genre;
+    string title, genre, classification, cast, synopsis, subtitles, spokenLanguage;
     int duration; // in minutes
     double price; // ticket price
 };

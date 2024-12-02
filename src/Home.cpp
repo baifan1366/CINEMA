@@ -62,21 +62,21 @@ void showAdminMenu()
     cout << endl;
     cout << "WELCOME BACK, ADMIN01"<<endl;
     showDashLoop();
-    cout<<endl;
-    cout<<"\t\t ADMIN MENU"<<endl;
-    cout << "1. Add Admin"<<endl;
-    cout << "2. Movie Management" << endl;
-    cout << "3. Generate Sales Report" << endl;
-    cout << "4. Exit" << endl;
+    cout<<endl<<endl;
+    cout<<"\t\tADMIN MENU"<<endl<<endl;
+    cout << "\t[1]\tAdd Admin"<<endl;
+    cout << "\t[2]\tMovie Management" << endl;
+    cout << "\t[3]\tGenerate Sales Report" << endl;
+    cout << "\t[4]\tExit" << endl<<endl;
     showDashLoop();
-    cout << endl;
-    cout << "Enter your choice: ";
+    cout << endl<<endl;
+    cout << "Please enter your choice: ";
     cin >> choice;
     while (cin.fail() || choice < 1 || choice > 4)
     {
     	cin.clear(); // Clear the error state of cin
         cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Ignore remaining invalid characters
-        cout << "Please re-enter a valid choice [1 | 2 | 3 | 4]: ";
+        cout <<endl<< "Please re-enter a valid choice: ";
         cin>>choice;
 	}
     switch (choice) 

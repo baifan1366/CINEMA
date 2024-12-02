@@ -1,5 +1,5 @@
-#include <chrono>
 #include <iostream>
+#include <limits>
 
 #include "Home.h"
 #include "Utils.h"
@@ -16,7 +16,7 @@ int showMainMenu() {
     showDashLoop();
     cout << endl<<endl;
     cout << "\t[0]\tAdministrator"<<endl<<"\t[1]\tCustomer"<<endl<<endl;
-    cout << "Please choose your role to get started: ";
+    cout << "Please enter your role to get started: ";
 
     // Read the input as a string
     string input;
