@@ -6,53 +6,43 @@
 
 void displayMoviePage()
 {
-	int opt;
+	int choice;
 	string filename = "movies.txt";
-	
+
 	do
 	{
-		cout<<"\t--- Movie Management ---"<<endl;
-		cout<<"1. Create New Movie"<<endl;
-		cout<<"2. Read Movie List"<<endl;
-		cout<<"3. Update Movie List"<<endl;
-		cout<<"4. Delete Movie"<<endl;
-		cout<<"5. Go Back to Home Page"<<endl;
-		cout<<"6. Exit"<<endl<<endl;
-		
-		cout<<"Enter your option: ";
-		cin>>opt;
-		while (cin.fail() || opt < 1 || opt > 6)
+		showDashLoop();
+    	cout << endl;
+	    cout << " ADMIN MENU | MOVIE MANAGEMENT"<<endl;
+	    showDashLoop();
+	    cout<<endl<<endl;
+		cout<<"\t\tMOVIE MANAGEMENT"<<endl;
+    	cout<<endl;
+		cout<<"\t[1]\tCreate New Movie"<<endl;
+		cout<<"\t[2]\tRead Movie List"<<endl;
+		cout<<"\t[3]\tUpdate Movie List"<<endl;
+		cout<<"\t[4]\tDelete Movie"<<endl;
+		cout<<"\t[5]\tGo Back to Home Page"<<endl;
+		cout<<"\t[6]\tExit"<<endl<<endl;
+		showDashLoop();
+    	cout << endl<<endl;
+		cout<<"Please enter your choice: ";
+		cin>>choice;
+		while (cin.fail() || choice < 1 || choice > 6)
 		{
 			cin.clear();
 			cin.ignore(numeric_limits<streamsize>::max(), '\n');
-			cout<<"Please re-enter a valid option [1 | 2 | 3 | 4 | 5 | 6]: ";
-			cin>>opt;
+			cout<<endl<<"Please re-enter a valid choice: ";
+			cin>>choice;
 		}
-		switch(opt)
+		cout<<endl;
+		switch(choice)
 		{
 			case 1:
-			{
 				clearScreen();
-                // Create New Movie
-                string title, genre;
-                int duration;
-                double price;
-
-                cout << "Enter movie title: ";
-                cin.ignore();
-                getline(cin, title);
-                cout << "Enter genre: ";
-                getline(cin, genre);
-                cout << "Enter duration (minutes): ";
-                cin >> duration;
-                cout << "Enter price: ";
-                cin >> price;
-
-                Movie newMovie(title, genre, duration, price);
-                newMovie.saveToFile(filename);
-                cout << "Movie added successfully!" << endl;
+                createMovie();
                 break;
-            }
+            
 			case 2:
 			{
 				clearScreen();
@@ -130,6 +120,36 @@ void displayMoviePage()
 				exit(1);
 				break;
 		}
-	}while (opt != 6);
+	}while (choice != 6);
 }
 
+void createMovie()
+{
+	string filename = "movies.txt";
+	showDashLoop();
+    cout << endl;
+	cout << " ADMIN MENU | MOVIE MANAGEMENT | CREATE MOVIE "<<endl;
+	showDashLoop();
+	cout<<endl<<endl;
+	cout<<"\t\tCREATE NEW MOVIE"<<endl;
+    cout<<endl;	
+
+	// Create New Movie
+    string title, genre;
+    int duration;
+    double price;
+    
+    cout << "Enter movie title: ";
+    cin.ignore();
+    getline(cin, title);
+    cout << "Enter genre: ";
+    getline(cin, genre);
+    cout << "Enter duration (minutes): ";
+	cin >> duration;
+    cout << "Enter price: ";
+    cin >> price;
+
+    Movie newMovie(title, genre, duration, price);
+    newMovie.saveToFile(filename);
+    cout << "Movie added successfully!" << endl;	
+}
