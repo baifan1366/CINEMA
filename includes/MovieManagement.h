@@ -1,6 +1,6 @@
 #ifndef MOVIEMANAGEMENT_H
 #define MOVIEMANAGEMENT_H
 
-void displayMovie();
+void displayMoviePage();
 
 #endif

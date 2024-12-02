@@ -1,9 +1,8 @@
 #include <iostream>
 #include <limits>
 #include <cstdlib>
-#include <chrono>
-#include <thread>
 #include "Home.h"
+#include "Utils.h"
 #include "MovieManagement.h"
 
 void showCustomerMenu() 
@@ -55,33 +54,6 @@ void showCustomerMenu()
     }
 }
 
-void clearScreen()
-{
-	system("CLS");
-}
-
-// Function to display a fake loading animation
-void showLoadingAnimation(const string& message, int duration = 3) 
-{
-    cout << message;
-    for (int i = 0; i < duration; ++i) 
-	{
-        cout << ".";
-        cout.flush(); // Force output to appear immediately
-        this_thread::sleep_for(chrono::milliseconds(500)); // 500ms delay
-    }
-    cout << " Done!" << endl << endl;
-}
-
-//show '-' loop
-void showDashLoop() 
-{
-    for (int i = 0; i < 50; i++) 
-	{
-        cout << "-";
-    }
-}
-
 //admin menu
 void showAdminMenu() 
 {
@@ -116,7 +88,7 @@ void showAdminMenu()
             showLoadingAnimation("Loading",2);
             system("pause");
             clearScreen();
-            displayMovie();
+            displayMoviePage();
             break;
 
         case 3:
