@@ -16,7 +16,7 @@ void displayMoviePage()
 	clearScreen();
 	showDashLoop();
     cout << endl;
-	cout << " ADMIN MENU >> MOVIE MANAGEMENT"<<endl;
+	cout << "\033[90m ADMIN MENU\033[0m >> MOVIE MANAGEMENT"<<endl;
 	showDashLoop();
 	cout<<endl<<endl;
 //	cout<<"\t\tMOVIE MANAGEMENT"<<endl;
@@ -31,7 +31,6 @@ void displayMoviePage()
     cout << endl<<endl;
 	cout<<"Please enter your choice: ";
 	cin>>choice;
-	cin.ignore();
 	//cin.fail() will returns true if the last input operation failed
 	while (cin.fail() || choice < 1 || choice > 6)
 	{
@@ -39,7 +38,6 @@ void displayMoviePage()
 		cin.ignore(numeric_limits<streamsize>::max(), '\n');
 		cout<<endl<<"Please re-enter a valid choice: ";
 		cin>>choice;
-		cin.ignore();
 	}
 	switch(choice)
 	{
@@ -80,7 +78,7 @@ void createMovie()
 	
 	showDashLoop();
     cout << endl;
-	cout << " ADMIN MENU >> MOVIE MANAGEMENT >> CREATE MOVIE "<<endl;
+	cout << "\033[90m ADMIN MENU >> MOVIE MANAGEMENT\033[0m >> CREATE MOVIE "<<endl;
 	showDashLoop();
 	cout<<endl<<endl;
 //	cout<<"\t\tCREATE NEW MOVIE"<<endl;
@@ -91,24 +89,65 @@ void createMovie()
     double price;
     
     cout <<left<<setw(width)<< "Movie Title"<<": ";
-    getline(cin, title);
     cin.ignore();
+    getline(cin, title);
+	while (title.empty()) // Check if the title is empty
+	{
+	    cout << "\033[31m**Title cannot be empty. Please re-enter a valid movie title.\033[0m"<<endl;
+	    cout <<left<<setw(width)<<"Movie Title"<<": ";
+	    getline(cin, title); // Re-read input only if it's empty
+	}
     cout <<left<<setw(width)<< "Genre"<<": ";
     getline(cin, genre);
+	while (genre.empty()) // Check if the title is empty
+	{
+	    cout << "\033[31m**Genre cannot be empty. Please re-enter a valid genre. \033[0m"<<endl;
+	    cout <<left<<setw(width)<<"Genre"<<": ";
+	    getline(cin, genre); // Re-read input only if it's empty
+	}
     cout <<left<<setw(width)<<"Classification"<<": ";
     getline(cin, classification);
+	while (classification.empty()) // Check if the title is empty
+	{
+	    cout << "\033[31m**Classification cannot be empty. Please re-enter a valid classification. \033[0m"<<endl;
+	    cout <<left<<setw(width)<<"Classification"<<": ";
+	    getline(cin, classification); // Re-read input only if it's empty
+	}
     cout <<left<<setw(width)<<"Cast"<<": ";
     getline(cin, cast);
+	while (cast.empty()) // Check if the title is empty
+	{
+	    cout << "\033[31m**Cast cannot be empty. Please re-enter a valid cast. \033[0m"<<endl;
+	    cout <<left<<setw(width)<<"Cast"<<": ";
+	    getline(cin, cast); // Re-read input only if it's empty
+	}
     cout <<left<<setw(width)<<"Synopsis"<<": ";
     getline(cin, synopsis);
+	while (synopsis.empty()) // Check if the title is empty
+	{
+	    cout << "\033[31m**Synopsis cannot be empty. Please re-enter a valid synopsis. \033[0m"<<endl;
+	    cout <<left<<setw(width)<<"Synopsis"<<": ";
+	    getline(cin, synopsis); // Re-read input only if it's empty
+	}
     cout <<left<<setw(width)<< "Subtitles"<<": ";
     getline(cin, subtitles);
+	while (subtitles.empty()) // Check if the title is empty
+	{
+	    cout << "\033[31m**Subtitles cannot be empty. Please re-enter a valid subtitles. \033[0m"<<endl;
+	    cout <<left<<setw(width)<<"Subtitles"<<": ";
+	    getline(cin, subtitles); // Re-read input only if it's empty
+	}
     cout <<left<<setw(width)<< "Spoken Language"<<": ";
     getline(cin, spokenLanguage);
-    cin.ignore();
+	while (spokenLanguage.empty()) // Check if the title is empty
+	{
+	    cout << "\033[31m**Spoken language cannot be empty. Please re-enter a valid spoken language. \033[0m"<<endl;
+	    cout <<left<<setw(width)<<"Spoken Language"<<": ";
+	    getline(cin, spokenLanguage); // Re-read input only if it's empty
+	}
     cout <<left<<setw(width)<<"Running Time (in minutes)"<<": ";
-    cin >> duration;
     cin.ignore();
+    cin >> duration;
     //cin.fail() will returns true if the last input operation failed
 	while (cin.fail() || duration < 30 || duration > 180) //not too long not too short
 	{
@@ -117,11 +156,10 @@ void createMovie()
 		cout<<"\033[31m**Please re-enter a valid running time (Time Range: 30min - 180min)\033[0m"<<endl; //change to red color
 		cout <<left<<setw(width)<<"Running Time (in minutes)"<<": ";
 		cin>>duration;
-		cin.ignore();
 	}	
     cout <<left<<setw(width)<< "Price"<<": RM";
-    cin >> price;
     cin.ignore();
+    cin >> price;
     //cin.fail() will returns true if the last input operation failed
 	while (cin.fail() || price < 5 || price > 30) //only accept friendly price
 	{
@@ -130,7 +168,6 @@ void createMovie()
 		cout<<"\033[31m**Please re-enter a valid price (Price Range: RM5 - RM30)\033[0m"<<endl;
 		cout <<left<<setw(width)<< "Price"<<": RM";
 		cin>>price;
-		cin.ignore();
 	}	
 
     Movie newMovie(title, genre, classification, cast, synopsis, subtitles, spokenLanguage, duration, price);
@@ -150,7 +187,7 @@ void readMovie()
 	
 	showDashLoop();
     cout << endl;
-	cout << " ADMIN MENU | MOVIE MANAGEMENT | READ MOVIE "<<endl;
+	cout << "\033[90m ADMIN MENU >> MOVIE MANAGEMENT\033[0m >> READ MOVIE "<<endl;
 	showDashLoop();
 	cout<<endl<<endl;
 //	cout<<"\t\tREAD MOVIE LIST"<<endl;
@@ -218,7 +255,6 @@ void readMovie()
 		cin.ignore(numeric_limits<streamsize>::max(), '\n');
 		cout<<endl<<"Please re-enter a valid choice: ";
 		cin>>choice;
-		cin.ignore();
 	}
 	cout<<flush;
 	switch(choice)
@@ -286,7 +322,7 @@ void updateMovie()
 	vector<Movie> movies = Movie::loadAllFromFile(filename);
 	showDashLoop();
     cout << endl;
-	cout << " ADMIN MENU | MOVIE MANAGEMENT | UPDATE MOVIE "<<endl;
+	cout << "\033[90m ADMIN MENU >> MOVIE MANAGEMENT \033[0m>> UPDATE MOVIE "<<endl;
 	showDashLoop();
 	cout<<endl<<endl;
 //	cout<<"\t\tUPDATE A MOVIE"<<endl;
@@ -295,12 +331,29 @@ void updateMovie()
     string targetTitle, newTitle, newGenre, newClassification, newCast, newSynopsis, newSubtitles, newSpokenLanguage;
     int newDuration;
     double newPrice;
+    
+    cin.ignore();
     //check if there is no such movie
 	bool found = false;
 	do 
 	{
 		cout <<left<<setw(width)  << "Please enter the movie title to update"<<": ";
 		getline(cin, targetTitle);
+		
+		if(targetTitle == "1")
+		{
+			clearScreen;
+			displayMoviePage();
+			break;
+		}
+		if(targetTitle == "2")
+		{
+			clearScreen();
+            cout << "Thank you for visiting! Goodbye!"<<endl;
+			exit(1);
+			break;
+		}
+		
 		for (const auto& movie : movies) 
 		{
 			if (movie.getTitle() == targetTitle) 
@@ -314,25 +367,66 @@ void updateMovie()
 		if (!found) 
 		{
 			showLoadingAnimation("Searching in movie list", "Fail", 2);
-			cout << "\033[31mMovie not found. Please re-enter the movie title to update.\033[0m" << endl<<endl;
+			cout << "\033[31mMovie not found. Please re-enter the movie title to update. \n\n\t[1]\tGo Back to Previous Page\n\t[2]\tExit\033[0m" << endl<<endl;
 		}
 	} while (!found);  // Repeat until the movie is found
 	
     cout <<left<<setw(35)<< "Updated Title"<<": ";
-    cin.ignore();
     getline(cin, newTitle);
+    while (newTitle.empty()) // Check if the title is empty
+	{
+	    cout << "\033[31m**Title cannot be empty. Please re-enter a valid movie title.\033[0m" << endl;
+	    cout << left << setw(35) << "Updated Title" << ": ";
+	    getline(cin, newTitle); // Re-read input only if it's empty
+	}
     cout <<left<<setw(35) << "Updated Genre"<<": ";
     getline(cin, newGenre);
+	while (newGenre.empty()) // Check if the title is empty
+	{
+	    cout << "\033[31m**Genre cannot be empty. Please re-enter a valid genre.\033[0m"<<endl;
+	    cout <<left<<setw(35) << "Updated Genre"<<": ";
+	    getline(cin, newGenre); // Re-read input only if it's empty
+	}
     cout <<left<<setw(35) << "Updated Classification"<<": ";
     getline(cin, newClassification);
+	while (newClassification.empty()) // Check if the title is empty
+	{
+	    cout << "\033[31m**Classification cannot be empty. Please re-enter a valid classification.\033[0m"<<endl;
+	    cout <<left<<setw(35) << "Updated Classification"<<": ";
+	    getline(cin, newClassification); // Re-read input only if it's empty
+	}
     cout <<left<<setw(35) << "Updated Cast"<<": ";
     getline(cin, newCast);
+	while (newCast.empty()) // Check if the title is empty
+	{
+	    cout << "\033[31m**Cast cannot be empty. Please re-enter a valid cast.\033[0m"<<endl;
+	    cout <<left<<setw(35) << "Updated Cast"<<": ";
+	    getline(cin, newCast); // Re-read input only if it's empty
+	}
     cout <<left<<setw(35) << "Updated Synopsis"<<": ";
     getline(cin, newSynopsis);
+	while (newSynopsis.empty()) // Check if the title is empty
+	{
+	    cout << "\033[31m**Synopsis cannot be empty. Please re-enter a valid synopsis.\033[0m"<<endl;
+	    cout <<left<<setw(35) << "Updated Synopsis"<<": ";
+	    getline(cin, newSynopsis); // Re-read input only if it's empty
+	}
     cout <<left<<setw(35) << "Updated Subtitles"<<": ";
     getline(cin, newSubtitles);
+	while (newSubtitles.empty()) // Check if the title is empty
+	{
+	    cout << "\033[31m**Subtitles cannot be empty. Please re-enter a valid subtitles.\033[0m"<<endl;
+	    cout <<left<<setw(35) << "Updated Subtitles"<<": ";
+	    getline(cin, newSubtitles); // Re-read input only if it's empty
+	}
     cout <<left<<setw(35) << "Updated Spoken Language"<<": ";
     getline(cin, newSpokenLanguage);
+	while (newSpokenLanguage.empty()) // Check if the title is empty
+	{
+	    cout << "\033[31m**Spoken language cannot be empty. Please re-enter a valid spoken language.\033[0m"<<endl;
+	    cout <<left<<setw(35) << "Updated Spoken Language"<<": ";
+	    getline(cin, newSpokenLanguage); // Re-read input only if it's empty
+	}
     cout <<left<<setw(35) << "Updated Running Time (in minutes)"<<": ";
     cin.ignore();
     cin >> newDuration;
@@ -358,16 +452,50 @@ void updateMovie()
 		cin>>newPrice;
 	}	
     
-    Movie updatedMovie(newTitle, newGenre, newClassification, newCast, newSynopsis, newSubtitles, newSpokenLanguage, newDuration, newPrice);
-    if (Movie::updateMovieInFile(filename, targetTitle, updatedMovie)) 
+    showDashLoop();
+	cout<<endl<<endl;
+	cout<<"\t[1]\tConfirm"<<endl;
+	cout<<"\t[2]\tGo Back to Previous Page"<<endl;
+	cout<<"\t[3]\tExit"<<endl<<endl;
+	showDashLoop();
+	cout << endl<<endl;
+	int choice;
+	cout<<"Please enter your choice: ";
+	cin>>choice;
+	//cin.fail() will returns true if the last input operation failed
+	while (cin.fail() || choice < 1 || choice > 3)
 	{
-		showLoadingAnimation("Updating movie", "Successful", 2);
-		system("pause");
-		clearScreen();
-		displayMoviePage();
-    } else {
-    	showLoadingAnimation("Updating movie", "Fail", 2);
-    }	
+		cin.clear();
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		cout<<endl<<"Please re-enter a valid choice: ";
+		cin>>choice;
+	}
+	switch(choice)
+	{
+		case 1:
+			{
+				Movie updatedMovie(newTitle, newGenre, newClassification, newCast, newSynopsis, newSubtitles, newSpokenLanguage, newDuration, newPrice);
+			    if (Movie::updateMovieInFile(filename, targetTitle, updatedMovie)) 
+				{
+					showLoadingAnimation("Updating movie", "Successful", 2);
+					system("pause");
+					clearScreen();
+					displayMoviePage();
+			    } else {
+			    	showLoadingAnimation("Updating movie", "Fail", 2);
+				}
+			}
+			break;
+		case 2: 
+			clearScreen();
+			displayMoviePage();
+			break;
+		default:
+			clearScreen();
+            cout << "Thank you for visiting! Goodbye!"<<endl;
+			exit(1);
+			break;
+	}
 }
 
 void deleteMovie()
@@ -376,10 +504,11 @@ void deleteMovie()
 	vector<Movie> movies = Movie::loadAllFromFile(filename);
 	int choice;
 	string targetTitle;
+	cin.ignore();
 	
 	showDashLoop();
     cout << endl;
-	cout << " ADMIN MENU | MOVIE MANAGEMENT | DELETE MOVIE "<<endl;
+	cout << "\033[90m ADMIN MENU >> MOVIE MANAGEMENT \033[0m>> DELETE MOVIE "<<endl;
 	showDashLoop();
 	cout<<endl<<endl;
 //	cout<<"\t\tDELETE A MOVIE"<<endl;
@@ -424,7 +553,6 @@ void deleteMovie()
 					cin.ignore(numeric_limits<streamsize>::max(), '\n');
 					cout<<endl<<"Please re-enter a valid choice: ";
 					cin>>choice;
-					cin.ignore();
 				}
 				switch(choice)
 				{
@@ -461,7 +589,6 @@ void deleteMovie()
 			cout << "\033[31mMovie not found. Please re-enter the movie title to delete.\033[0m" << endl<<endl;
 		}
 	} while (!found);  // Repeat until the movie is found
-		
 }
 
 void readMovieDetails(const string& title) 
@@ -472,7 +599,7 @@ void readMovieDetails(const string& title)
 	
 	showDashLoop();
     cout << endl;
-	cout << " ADMIN MENU | MOVIE MANAGEMENT | READ MOVIE | MOVIE DETAILS "<<endl;
+	cout << "\033[90m ADMIN MENU >> MOVIE MANAGEMENT >> READ MOVIE\033[0m >> MOVIE DETAILS "<<endl;
 	showDashLoop();
 	cout<<endl<<endl;
 	
@@ -510,7 +637,6 @@ void readMovieDetails(const string& title)
 		cin.ignore(numeric_limits<streamsize>::max(), '\n');
 		cout<<endl<<"Please re-enter a valid choice: ";
 		cin>>choice;
-		cin.ignore();
 	}
 	switch(choice)
 	{
