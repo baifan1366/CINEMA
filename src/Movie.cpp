@@ -1,6 +1,8 @@
 #include "Movie.h"
 #include <vector>
 #include <iostream>
+#include <iomanip>
+#include <string>
 
 // Constructor
 Movie::Movie(const string& title, const string& genre, const string& classification, const string& cast, const string& synopsis, const string& subtitles, const string& spokenLanguage, int duration, double price)
@@ -93,7 +95,7 @@ void Movie::saveToFile(const string& filename) const {
         outFile << title << "," << genre << "," << classification << "," << cast << "," << synopsis << ","<< subtitles << ","<< spokenLanguage << ","<< duration << "," << price << endl;
 		outFile.close();
     } else {
-        cout<< "Unable to open file.";
+        cout<< "Unable to open file."<<endl;
     }
 }
 
@@ -117,6 +119,26 @@ vector<Movie> Movie::loadAllFromFile(const string& filename) {
             pos = line.find(",");
             genre = line.substr(0, pos);
             line.erase(0, pos + 1);
+            
+            pos = line.find(",");
+            classification = line.substr(0, pos);
+            line.erase(0, pos + 1);
+            
+            pos = line.find(",");
+            cast = line.substr(0, pos);
+            line.erase(0, pos + 1);
+            
+            pos = line.find(",");
+            synopsis = line.substr(0, pos);
+            line.erase(0, pos + 1);
+            
+            pos = line.find(",");
+            subtitles = line.substr(0, pos);
+            line.erase(0, pos + 1);
+            
+            pos = line.find(",");
+            spokenLanguage = line.substr(0, pos);
+            line.erase(0, pos + 1);
 
             pos = line.find(",");
             duration = stoi(line.substr(0, pos));
@@ -128,7 +150,7 @@ vector<Movie> Movie::loadAllFromFile(const string& filename) {
         }
         inFile.close();
     } else {
-        cout<< "Unable to open file.";
+        cout<< "Unable to open file."<<endl;
     }
 
     return movies;
@@ -151,7 +173,7 @@ bool Movie::updateMovieInFile(const string& filename, const string& targetTitle,
         ofstream outFile(filename, ios::trunc); // Overwrite file
         if (outFile.is_open()) {
             for (const auto& movie : movies) {
-                outFile << movie.getTitle() << "," << movie.getGenre() << "," << movie.getDuration() << "," << movie.getPrice() << endl;
+                outFile << movie.getTitle() << "," << movie.getGenre() << ","<< movie.getClassification() << ","<< movie.getCast() << ","<< movie.getSynopsis() << ","<< movie.getSubtitles() << ","<< movie.getSpokenLanguage() << "," << movie.getDuration() << "," << movie.getPrice() << endl;
             }
             outFile.close();
         } else {
@@ -174,7 +196,7 @@ bool Movie::deleteMovieFromFile(const string& filename, const string& targetTitl
         ofstream outFile(filename, ios::trunc); // Overwrite file
         if (outFile.is_open()) {
             for (const auto& movie : movies) {
-                outFile << movie.getTitle() << "," << movie.getGenre() << "," << movie.getDuration() << "," << movie.getPrice() << endl;
+                outFile << movie.getTitle() << "," << movie.getGenre() << "," << movie.getClassification() << "," << movie.getCast() << "," << movie.getSynopsis() << "," << movie.getSubtitles() << "," << movie.getSpokenLanguage() << "," << movie.getDuration() << "," << movie.getPrice() << endl;
             }
             outFile.close();
         } else {
@@ -185,6 +207,3 @@ bool Movie::deleteMovieFromFile(const string& filename, const string& targetTitl
 
     return false; // Movie not found
 }
-
-
-

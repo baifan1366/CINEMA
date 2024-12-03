@@ -7,28 +7,21 @@
 using namespace std;
 
 int showMainMenu() {
-    int choice;
-
+    int choice = 1;
+	string role;
+	showCinemaAnimation();
     showDashLoop();
-    cout << endl;
-    cout << "WELCOME TO XYZ CINEMA SYSTEM";
-    cout << endl;
+    cout << "\nWELCOME TO XYZ CINEMA SYSTEM\n";
     showDashLoop();
-    cout << endl<<endl;
-    cout << "\t[0]\tAdministrator"<<endl<<"\t[1]\tCustomer"<<endl<<endl;
+    cout  << endl <<endl << "\t[0]\tAdministrator"<<endl<<"\t[1]\tCustomer"<<endl<<endl;
     cout << "Please enter your role to get started: ";
-
-    // Read the input as a string
-    string input;
-    cin >> input;
     
-
+    // Read the input as a string
+    cin >> role;
+    
     // Check if the input is numeric and '0'
-    if (input == "0") {
-        choice = 0;
-    } else {
-        choice = 1;  // Any other input will be treated as a Customer
-    }
+    if (role == "0") choice = 0;
+
     cin.clear(); // Clear the error state of cin
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
@@ -37,17 +30,10 @@ int showMainMenu() {
 
 // Main function
 int main() {
-    int choice;
-
-    choice = showMainMenu();
-
-    if (choice == 0) 
-	{
-    	clearScreen();
-        showAdminMenu();
-	}else{	
-	    clearScreen();    	
-    	showCustomerMenu();
-}	
+    int choice = showMainMenu();
+	clearScreen();
+	if (choice == 0) showAdminMenu();
+    if (choice == 1) showCustomerMenu();
+	
     return 0;
 }
