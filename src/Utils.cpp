@@ -33,7 +33,6 @@ void clearScreen()
 	system("CLS");
 }
 
-
 // Function to display a fake loading animation
 void showLoadingAnimation(const string& message, const string& status, int duration = 3) 
 {
