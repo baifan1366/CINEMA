@@ -5,7 +5,7 @@ void signUpCustomer(){
 
     int id = 1; //sample id
     string email; // sample
-    string password //sample
+    string password; //sample
 
 
     cout << "=== Sign Up ===" << endl;
