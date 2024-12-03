@@ -16,8 +16,7 @@ void showCustomerMenu()
     cout << "1. View Available Movies" << endl;
     cout << "2. Book Tickets" << endl;
     cout << "3. Check Booking Status" << endl;
-    cout<< "4. Edit Profile"<<endl;
-    cout << "5. Exit" << endl;
+    cout << "4. Exit" << endl;
     showDashLoop();
     cout << endl;
     cout << "Enter Your Choice: ";
@@ -34,30 +33,21 @@ void showCustomerMenu()
     // Switch block to handle the user's choice
     switch (choice) {
         case 1:
-            showLoadingAnimation("Fetching movie list", 2);
-
+            showLoadingAnimation("Fetching movie list", "Successful", 2);
             system("pause");
             clearScreen();
             break;
         case 2:
-            showLoadingAnimation("Booking tickets", 2);
-
+            showLoadingAnimation("Booking tickets", "Successful", 2);
             system("pause");
             clearScreen();
             break;
         case 3:
-            showLoadingAnimation("Checking booking status", 2);
-
+            showLoadingAnimation("Checking booking status", "Successful", 2);
             system("pause");
             clearScreen();
             break;
         case 4:
-            showLoadingAnimation("Loading Personal Data", 2);
-            
-            system("pause");
-            clearScreen();
-            break;
-        case 5:
             clearScreen();
             cout << "Thank you for visiting! Goodbye!" << endl;
             exit(0); // Exit the program
