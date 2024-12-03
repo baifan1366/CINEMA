@@ -520,6 +520,20 @@ void deleteMovie()
 	{
 		cout <<left<<setw(width)  << "Please enter the movie title to delete"<<": ";
 		getline(cin, targetTitle);
+		if(targetTitle == "1")
+		{
+			clearScreen;
+			displayMoviePage();
+			break;
+		}
+		if(targetTitle == "2")
+		{
+			clearScreen();
+            cout << "Thank you for visiting! Goodbye!"<<endl;
+			exit(1);
+			break;
+		}
+		
 		for (const auto& movie : movies) 
 		{
 			if (movie.getTitle() == targetTitle) 
@@ -586,7 +600,7 @@ void deleteMovie()
 		if (!found) 
 		{
 			showLoadingAnimation("Searching in movie list", "Fail", 2);
-			cout << "\033[31mMovie not found. Please re-enter the movie title to delete.\033[0m" << endl<<endl;
+			cout << "\033[31mMovie not found. Please re-enter the movie title to delete. \n\n\t[1]\tGo Back to Previous Page\n\t[2]\tExit\033[0m" << endl<<endl;
 		}
 	} while (!found);  // Repeat until the movie is found
 }
