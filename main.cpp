@@ -1,8 +1,10 @@
 #include <iostream>
 #include <limits>
 
-#include "Home.h"
+#include "HomePage.h"
 #include "Utils.h"
+//to use signupcustomer func
+#include "customerProfile.h"
 
 using namespace std;
 
@@ -45,8 +47,20 @@ int main() {
 	{
     	clearScreen();
         showAdminMenu();
-	}else{	
-	    clearScreen();    	
+	}else{
+
+	    clearScreen();
+        cout<<"Already Have an Account? [Enter 'O' to Sign Up]"<<endl;
+        cout<<"Don't Have an Account? [Enter '1' to Sign Up]";
+        cin>>choice;
+        
+        //ask customer to login / sign up
+        if(choice == 0){
+            //login option for customer
+        }else{
+            signUpCustomer();
+        }
+        
     	showCustomerMenu();
 }	
     return 0;

@@ -1,12 +1,14 @@
 #include <iostream>
 #include "Customer.h"
+#include "Utils.h"
 
 void signUpCustomer(){
 
-    int id = 1; //sample id
-    string email; // sample
-    string password //sample
+    int id = 1;
+    string email; 
+    string password 
 
+    clearScreen();
 
     cout << "=== Sign Up ===" << endl;
     cout << "Enter Email: ";
@@ -26,6 +28,10 @@ void signUpCustomer(){
     // Clean up dynamically allocated memory
     delete customer;
 
+}
+
+void signInCustomer(){
+    //check if record in "customer.txt" match, if yes: sign in customer; if not: while loop for another attempt... 
 }
 
 void showProfile(const customer& customer){
@@ -61,8 +67,6 @@ void showProfile(const customer& customer){
 
 }
 
-    
-
 void editProfile(){
-
+    
 }
