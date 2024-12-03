@@ -1,2 +1,2 @@
-void showProfile(){}
-void editProfile(){}
+void showProfile();
+void editProfile();
